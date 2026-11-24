@@ -1,0 +1,530 @@
+# NEXUS-x-
+future-0.5+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE EFFICIENCY NEXUS | Celestial Digital Services</title>
+  <style>
+    :root {
+      --bg-dark: #030712;
+      --cyan: #00f0ff;
+      --gold: #fbbf24;
+      --glass: rgba(10, 18, 40, 0.65);
+      --border-cyan: rgba(0, 240, 255, 0.3);
+      --border-gold: rgba(251, 191, 36, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.08) 0%, transparent 40%);
+      color: #f8fafc;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Animated Starfield Background */
+    .cosmos-grid {
+      position: fixed;
+      inset: 0;
+      background-size: 45px 45px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 28px;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-cyan);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-emblem {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.3);
+      letter-spacing: -1px;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: #94a3b8;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--border-cyan);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+    }
+
+    /* Main Nexus Hero Section */
+    main {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nexus-hero {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .nexus-subtitle {
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .nexus-title {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      letter-spacing: 6px;
+      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #00f0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(251, 191, 36, 0.25);
+      margin-bottom: 10px;
+    }
+
+    .nexus-tagline {
+      font-size: 15px;
+      letter-spacing: 4px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* Rotating Quantum Core */
+    .quantum-core-wrapper {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+    }
+
+    .ring-1 {
+      width: 190px;
+      height: 190px;
+      border-top-color: var(--gold);
+      border-bottom-color: var(--gold);
+      animation: spinRight 10s linear infinite;
+    }
+
+    .ring-2 {
+      width: 150px;
+      height: 150px;
+      border-left-color: var(--cyan);
+      border-right-color: var(--cyan);
+      animation: spinLeft 6s linear infinite;
+    }
+
+    .ring-3 {
+      width: 110px;
+      height: 110px;
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      animation: spinRight 15s linear infinite;
+    }
+
+    .core-crystal {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--cyan), #2563eb);
+      transform: rotate(45deg);
+      box-shadow: 0 0 30px var(--cyan), inset 0 0 15px #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .quantum-core-wrapper:hover .core-crystal {
+      transform: rotate(225deg) scale(1.15);
+      box-shadow: 0 0 45px var(--gold);
+    }
+
+    @keyframes spinRight { 100% { transform: rotate(360deg); } }
+    @keyframes spinLeft { 100% { transform: rotate(-360deg); } }
+
+    /* Modules Grid */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .module-card {
+      background: var(--glass);
+      border: 1px solid var(--border-cyan);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .card-icon {
+      font-size: 28px;
+      background: rgba(0, 240, 255, 0.1);
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border-cyan);
+    }
+
+    .card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+      letter-spacing: 1px;
+    }
+
+    .module-card h2 {
+      font-size: 19px;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .module-card p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--cyan);
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .action-btn:hover {
+      background: var(--cyan);
+      color: #030712;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    }
+
+    /* Live Terminal Console */
+    .nexus-console {
+      width: 100%;
+      margin-top: 32px;
+      background: #020617;
+      border: 1px solid var(--border-gold);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .console-output {
+      height: 140px;
+      overflow-y: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #38bdf8;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .console-input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .console-input-row input {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-cyan);
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .console-input-row button {
+      background: linear-gradient(135deg, var(--gold), #d97706);
+      color: #000;
+      border: none;
+      padding: 0 22px;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cosmos-grid"></div>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="brand">
+      <div class="logo-emblem">CS</div>
+      <div class="brand-text">
+        <h1>Celestial</h1>
+        <span>Digital Services</span>
+      </div>
+    </div>
+    <div class="status-pill">
+      <div class="pulse-dot"></div>
+      <span id="systemStatus">NEXUS CORE: ONLINE</span>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main>
+    <section class="nexus-hero">
+      <div class="nexus-subtitle">THE EFFICIENCY</div>
+      <div class="nexus-title">NEXUS</div>
+      <div class="nexus-tagline">AUTOMATE. INTEGRATE. ELEVATE.</div>
+
+      <!-- Interactive Quantum Core -->
+      <div class="quantum-core-wrapper" onclick="boostCore()" title="Click to Overclock Quantum Core">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="core-crystal"></div>
+      </div>
+      <small style="color: #64748b; font-size: 12px; letter-spacing: 1px;">[ TAP QUANTUM CRYSTAL TO SYNC NODES ]</small>
+    </section>
+
+    <!-- 3 Core Futuristic Modules -->
+    <section class="modules-grid">
+      <!-- Module 1 -->
+      <div class="module-card">
+        <div class="card-header">
+          <div class="card-icon">⚙️</div>
+          <span class="card-badge" id="badge-workflow">STANDBY</span>
+        </div>
+        <h2>WORKFLOW AUTOMATION</h2>
+        <p>Autonomous task routing, zero-latency AI pipelines, and self-executing business triggers.</p>
+        <button class="action-btn" onclick="activateModule('WORKFLOW AUTOMATION', 'badge-workflow')">INITIALIZE PIPELINE</button>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="module-card">
+        <div class="card-header">
+          <div class="card-icon">🧠</div>
+          <span class="card-badge" id="badge-smart">STANDBY</span>
+        </div>
+        <h2>SMART SYSTEMS</h2>
+        <p>Predictive neural architecture that adapts, learns, and optimizes your digital ecosystem in real time.</p>
+        <button class="action-btn" onclick="activateModule('SMART SYSTEMS', 'badge-smart')">ENGAGE NEURAL OS</button>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="module-card">
+        <div class="card-header">
+          <div class="card-icon">🔗</div>
+          <span class="card-badge" id="badge-data">STANDBY</span>
+        </div>
+        <h2>DATA INTEGRATION</h2>
+        <p>Unified quantum data bridge connecting APIs, cloud vaults, and multi-platform analytics seamlessly.</p>
+        <button class="action-btn" onclick="activateModule('DATA INTEGRATION', 'badge-data')">SYNC DATA STREAMS</button>
+      </div>
+    </section>
+
+    <!-- Nexus AI Command Terminal -->
+    <section class="nexus-console">
+      <div class="console-header">
+        <span>⚡ NEXUS QUANTUM COMMAND TERMINAL</span>
+        <span id="efficiencyMeter">EFFICIENCY: 98.4%</span>
+      </div>
+      <div class="console-output" id="consoleLog">
+        <div>> [SYSTEM] Celestial Digital Services OS v4.2 initialized...</div>
+        <div>> [NEXUS] Quantum Core stabilized. Awaiting module activation or command.</div>
+      </div>
+      <div class="console-input-row">
+        <input type="text" id="cmdInput" placeholder="Enter command (e.g., 'automate all', 'status', 'boost')..." onkeypress="if(event.key==='Enter') runCommand()">
+        <button onclick="runCommand()">EXECUTE</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const logBox = document.getElementById('consoleLog');
+    const meter = document.getElementById('efficiencyMeter');
+
+    function addLog(msg, color = '#38bdf8') {
+      const line = document.createElement('div');
+      line.style.color = color;
+      const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+      line.innerText = `[${time}] > ${msg}`;
+      logBox.appendChild(line);
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function activateModule(name, badgeId) {
+      const badge = document.getElementById(badgeId);
+      badge.innerText = "ACTIVE ●";
+      badge.style.background = "rgba(0, 240, 255, 0.2)";
+      badge.style.color = "#00f0ff";
+      badge.style.borderColor = "#00f0ff";
+      
+      addLog(`Initializing ${name}...`, '#fbbf24');
+      setTimeout(() => {
+        addLog(`${name} is now ONLINE and operating at peak efficiency.`, '#4ade80');
+        meter.innerText = "EFFICIENCY: 99.9%";
+      }, 600);
+    }
+
+    function boostCore() {
+      addLog("QUANTUM CORE OVERCLOCKED! Synchronizing all Celestial nodes...", '#fbbf24');
+      activateModule('WORKFLOW AUTOMATION', 'badge-workflow');
+      activateModule('SMART SYSTEMS', 'badge-smart');
+      activateModule('DATA INTEGRATION', 'badge-data');
+    }
+
+    function runCommand() {
+      const input = document.getElementById('cmdInput');
+      const cmd = input.value.trim();
+      if (!cmd) return;
+
+      addLog(`USER_CMD: ${cmd}`, '#ffffff');
+      input.value = '';
+
+      const lower = cmd.toLowerCase();
+      setTimeout(() => {
+        if (lower.includes('automate') || lower.includes('all') || lower.includes('boost')) {
+          boostCore();
+        } else if (lower.includes('status')) {
+          addLog("ALL SYSTEMS NOMINAL | Latency: 2ms | Security: Quantum Encrypted", '#4ade80');
+        } else if (lower.includes('clear')) {
+          logBox.innerHTML = '';
+          addLog("Terminal buffer cleared.");
+        } else {
+          addLog(`Nexus AI processed '${cmd}': Optimization protocol generated and queued.`, '#00f0ff');
+        }
+      }, 400);
+    }
+  </script>
+</body>
+</html>
+
